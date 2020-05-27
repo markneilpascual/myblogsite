@@ -1,0 +1,47 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block header %}
+
+    {% if post.post_image.url != 0 %}
+        <header class="masthead" style="background-image: url('{{ post.post_image.url }}')">
+    {% else %}
+        <header class="masthead" style="background-image: url('{{STATIC_PREFIX}}img/post-bg.jpg')">
+     {% endif %}
+
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+          <h1>CURRENT POST IMAGE</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+{% endblock %}
+{%  block content %}
+    <form name="sentMessage" id="contactForm" method="post" enctype="multipart/form-data" novalidate>
+
+        {% csrf_token %}
+
+                      <div class="form-group">
+                            {{ form.post_image }}
+                      </div>
+
+                      <div class="control-group">
+                            {{ form.author|as_crispy_field }}
+                      </div>
+                      <div class="control-group">
+                            {{ form.title|as_crispy_field }}
+                      </div>
+                      <div class="control-group">
+                         {{ form.text|safe }}
+                         {{ form.media }}
+                      </div>
+                      <br>
+                      <div class="form-group">
+                        <button type="submit" class="btn btn-primary" id="sendMessageButton">Create Post</button>
+                      </div>
+    </form>
+{% endblock %}

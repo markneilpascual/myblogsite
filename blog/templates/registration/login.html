@@ -1,0 +1,32 @@
+{%extends 'blog/base.html' %}
+{% block navbar_block %}
+
+{% endblock %}
+{% block header %}
+{% endblock %}
+{% block content %}
+{% endblock %}
+{% block login_block %}
+
+
+
+    <div class="container pt-5">
+        <div class="row justify-content-center">
+            <div class="text-center shadow-lg p-4 m-4 bg-white border">
+                    {% if form.errors %}
+                        <p>Your username and password didnt match please try again</p>
+                     {% endif %}
+
+                    <form action="{% url 'login' %}" method="POST" class="blog_form">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                            <input type="submit" class="btn btn-primary" value="login">
+                            <input type="hidden" name="next" value="{{next}}">
+                    </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block footer_block %}
+{% endblock %}
