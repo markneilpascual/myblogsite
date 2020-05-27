@@ -1,1 +1,1 @@
-python-3.8.2
+web: gunicorn myblogsite.wsgi:application --log-file -
